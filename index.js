@@ -99,7 +99,15 @@ function redirect_user(req, res, step)
      *  Let's redirect the user
      *  =======================
      */
-    res.send(`<html><head><link rel="icon" type="image/gif" href="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/><meta http-equiv="refresh" content="0;URL='${redirect_url}'" /></head><body><script>window.setTimeout(function(){window.location.replace('${redirect_url}');}, 0);</script></body></html>`).end();
+ /*
+ `<noscript>
+  <style>html{display:none;}</style>
+  <meta http-equiv="refresh" content="0.0;url=${redirect_url}">
+</noscript>`
+
+//Added nojavascript refresh
+*/
+    res.send(`<html><head><link rel="icon" type="image/gif" href="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/><meta http-equiv="refresh" content="0;URL='${redirect_url}'" /></head><body><script>window.setTimeout(function(){window.location.replace('${redirect_url}');}, 0);</script><noscript><style>html{display:none;}</style><meta http-equiv="refresh" content="0.0;url=${redirect_url}"></noscript></body></html>`).end();
     /**
      *  OLD REDIRECT
      *
